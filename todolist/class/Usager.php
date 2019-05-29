@@ -13,7 +13,7 @@ class Usager
 	}
 	public function getTabListe()
 	{
-		$req = "SELECT * FROM liste WHERE id_usager={$this->id_usager} ORDER BY nom";
+		$req = "SELECT * FROM liste WHERE id_usager={$this->id_usager} ORDER BY titre";
 		return DBMySQL::getInstance()->xeq($req)->tab(Liste::class);
 	}
 	public function charger()
