@@ -1,0 +1,256 @@
+@charset "utf-8";
+
+* {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	font-family: arial;
+	color: #333;
+}
+
+table {
+	margin: 20px 10px 10px 10px;
+	border-collapse: collapse;
+	border: solid 2px;
+}
+
+th,
+td {
+	padding: 10px;
+	border: solid 1px;
+}
+
+tr td:last-child {
+	text-align: end;
+}
+
+header {
+	position: fixed;
+	z-index: 1;
+	width: 100%;
+	height: 80px;
+	box-shadow: 0 30px 30px #FFF;
+	background-color: #333;
+	background-image: url(../img/logo.png);
+	background-repeat: no-repeat;
+	background-position-x: 100px;
+}
+
+header .user {
+	left: 320px;
+	top: 30px;
+	font-size: 20px;
+	color: #FFF;
+}
+
+header a {
+	color: #FFF;
+}
+
+footer {
+	width: 100%;
+	height: 80px;
+	margin: 130px 0 0 0;
+	background-color: #555;
+	border-top: solid 5px #333;
+	text-align: center;
+	line-height: 80px;
+	font-size: 12px;
+	color: #DDD;
+}
+
+footer:after {
+	content: "© LOWA 2018 - Gilles Vanderstraeten";
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+a:hover {
+	color: #F00;
+}
+
+input,
+select {
+	margin: 5px;
+	padding: 2px;
+	font-size: 16px;
+}
+
+input[type="submit"] {
+	font-weight: bold;
+}
+
+#container {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: calc(344px * 3);
+	top: 100px;
+	margin: auto;
+}
+
+.categorie {
+	width: 100%;
+	margin: 20px 10px 15px 10px;
+	font-size: 32px;
+	cursor: default;
+}
+
+.categorie .ico {
+	position: absolute;
+	left: -45px;
+	top: 2px;
+	width: 32px;
+	height: 32px;
+	opacity: 0;
+	cursor: pointer;
+	transition: .2s;
+}
+
+.categorie:hover .ico {
+	opacity: 1;
+}
+
+.categorie .ico:hover {
+	top: 0;
+	width: 36px;
+	height: 36px;
+}
+
+.categorie .nom {
+	margin-left: 0;
+	transition: .2s;
+}
+
+.blocProduit {
+	margin: 0 10px 20px 10px;
+	padding: 10px;
+	border-radius: 5px;
+	border: solid 2px #DDD;
+	cursor: pointer;
+}
+
+.blocProduit:hover .ico {
+	opacity: 1;
+}
+
+.blocProduit .nom {
+	text-align: center;
+	font-size: 24px;
+}
+
+.blocProduit img:first-child {
+	width: 300px;
+	height: 300px;
+	object-fit: cover;
+}
+
+#detailProduit {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 20px 10px 10px 10px;
+}
+
+#detailProduit img {
+	margin: 0 100px 0 0;
+	width: 450px;
+	height: 450px;
+	object-fit: contain;
+}
+
+#detailProduit .prix {
+	margin: 30px 0;
+	text-align: end;
+	font-size: 36px;
+	font-weight: bold;
+}
+
+#detailProduit .ref {
+	text-align: end;
+	font-size: 24px;
+}
+
+#detailProduit .ref:first-line {
+	font-variant: all-petite-caps;
+	text-align: end;
+	font-size: 25px;
+}
+
+.prix:after {
+	content: ' €';
+}
+
+form {
+	width: 50%;
+	margin: 20px 10px 10px 0;
+}
+
+form div.item {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 10px;
+}
+
+form label {
+	min-width: 150px;
+	margin: 5px;
+	padding: 2px;
+	font-weight: bold;
+}
+
+input[type="file"]{
+	display: none;
+}
+
+#vignette {
+	width: 300px;
+	/* Utile entre TD#12 et TD#14. */
+	height: 300px;
+	/* Utile entre TD#12 et TD#14. */
+	padding: 3px;
+	border: dashed 2px #ccc;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-origin: content-box;
+	background-size: contain;
+}
+
+#vignette:hover .ico {
+	opacity: 1;
+}
+
+.ico {
+	opacity: 0;
+	position: absolute;
+	top: 5px;
+	width: 32px;
+	height: 32px;
+	transition: .2s;
+	cursor: pointer;
+}
+
+.ico:hover {
+	width: 36px;
+	height: 36px;
+}
+
+.editer {
+	left: 5px;
+}
+
+.supprimer {
+	right: 5px;
+}
+
+.supprimerImage {
+	top: 50px;
+	right: 5px;
+}
+
+.erreur {
+	width: 100%;
+	margin: 0 0 0 10px;
+	color: red;
+}
