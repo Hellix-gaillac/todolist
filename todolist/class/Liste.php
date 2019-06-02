@@ -1,40 +1,41 @@
 <?php
-class Liste //implements ORM
+class Liste
 {
 	public $id_liste;
-	public $id_usager;
-	public $nom;
-	public $ref;
-	public $prix;
-	private $categorie = null;
-	public function __construct($id_liste = null, $id_usager = null, $nom = null, $ref = null, $prix = null)
+	public $titre;
+	private $usager = null;
+	private $todo = null;
+
+	public function __construct($id_liste = null, $titre = null)
 	{
 		$this->id_liste = $id_liste;
-		$this->id_usager = $id_usager;
-		$this->nom = $nom;
-		$this->ref = $ref;
-		$this->prix = $prix;
+		$this->titre = $titre;
+	}
+	public function getTabTodo()
+	{
+		$req = "SELECT * FROM todo WHERE id_liste={$this->id_liste} ORDER BY titre";
+		return DBMySQL::getInstance()->xeq($req)->tab(Todo::class);
 	}
 	public function __get($nom)
 	{
 		$methode = "get_{$nom}";
-		return $this->$methode(); // function magique: si $produit->categorie->nom demander alors php cherche méthode magique dans ce cas renvoie vers get_categorie.
+		return $this->$methode(); // function magique: si $produit->usager->nom demander alors php cherche méthode magique dans ce cas renvoie vers get_categorie.
 	}
 	public function get_usager()
 	{
 		if (!$this->usager) {
 			$req = "SELECT * FROM usager WHERE id_usager={$this->id_usager}";
-			$this->categorie = DBMySQL::getInstance()->xeq($req)->prem(Usager::class);
-			//DBMySQL::getInstance() instance pdo, xeq execussion , prem=fetch();
+			return DBMySQL::getInstance()->xeq($req)->prem(Liste::class);
 		}
-		return $this->categorie;
+		return $this->usager;
 	}
-	public function refExiste()
+	public function get_todo()
 	{
-		$id_liste = $this->id_liste ?: 0;
-		$db = DBMySQL::getInstance();
-		$req = "SELECT * FROM produit WHERE ref={$db->esc($this->ref)} AND id_liste!={$id_liste}";
-		return (bool)$db->xeq($req)->prem(self::class);
+		if (!$this->todo) {
+			$req = "SELECT * FROM todo WHERE id_liste={$this->id_liste}";
+			return DBMySQL::getInstance()->xeq($req)->tab(Todo::class);
+		}
+		return $this->todo;
 	}
 	public function charger()
 	{
@@ -50,7 +51,7 @@ class Liste //implements ORM
 		//Persister $this en se basant sur sa PK.
 		$id_liste = $this->id_liste ?: 'DEFAULT';
 		$db = DBMySQL::getInstance();
-		$req = "INSERT INTO liste VALUES({$id_liste}, {$this->id_usager}, {$db->esc($this->nom)}, {$db->esc($this->ref)}, {$this->prix}) ON DUPLICATE KEY UPDATE id_usager={$this->id_usager}, nom={$db->esc($this->nom)}, ref={$db->esc($this->ref)}, prix={$this->prix}";
+		$req = "INSERT INTO liste VALUES({$id_liste},{$this->id_usager}, {$db->esc($this->titre)}) ON DUPLICATE KEY UPDATE titre={$db->esc($this->titre)}";
 		$db->xeq($req);
 		$this->id_liste = $this->id_liste ?: $db->pk(); // recup du dernier id incrémenteé
 		return $this;
@@ -67,8 +68,7 @@ class Liste //implements ORM
 	public static function tab($where = 1, $orderBy = 1, $limit = null)
 	{ 	// pour faire Produit::tab("prix > 10")
 		//Retourne un tableau d'enregistrement souus la forme d'instances.
-		$req = "SELECT * FROM liste WHERE {$where} ORDER BY {$orderBy}" . ($limit ? "LIMIT {$limit}" : '');
+		$req = "SELECT * FROM todo WHERE {$where} ORDER BY {$orderBy}" . ($limit ? "LIMIT {$limit}" : '');
 		return DBMySQL::getInstance()->xeq($req)->tab(self::class);
 	}
-	//todo modif à faire dans index... plus de requete sql dans les copntrôleur
 }

@@ -24,14 +24,11 @@ $tabUsager = Usager::tab(1, "nom");
         <?php
             foreach ($usager->getTabListe() as $liste) {
 
-                $id = file_exists("img/prod_{$liste->id_usager}_v.jpg") ? $liste->id_usager : 0;
-                $maj = !$id ?: (new SplFileInfo("img/prod_{$id}_v.jpg"))->getMTime();
                 ?>
-        <div class="blocProduit" onclick="detail(<?= $liste->id_usager ?>)">
-            <!--<img src="img/prod_<?= $id ?>_v.jpg?maj=<?= $maj ?>" alt="" /> -->
+        <div class="blocProduit" onclick="detail(<?= $liste->id_liste ?>)">
             <div class="nom"><?= $liste->titre ?></div>
-            <img class="ico editer" src="img/ico_edit.svg" onclick="modifier(event, <?= $liste->id_usager ?>)" />
-            <img class="ico supprimer" src="img/ico_cancel.svg" onclick="supprimer(event, <?= $liste->id_usager ?>)" />
+            <img class="ico editer" src="img/ico_edit.svg" onclick="modifier(event, <?= $liste->id_liste ?>)" />
+            <img class="ico supprimer" src="img/ico_cancel.svg" onclick="supprimer(event, <?= $liste->id_liste ?>)" />
             <ul>
                 <?php
                         foreach ($liste->getTabTodo() as $todo) {
@@ -41,6 +38,7 @@ $tabUsager = Usager::tab(1, "nom");
                     }
                     ?>
             </ul>
+
         </div>
         <?php
         }

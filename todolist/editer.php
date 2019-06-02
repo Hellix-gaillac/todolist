@@ -3,64 +3,35 @@ require_once 'class/Cfg.php';
 $db = DBMySQL::getInstance();
 $opt = ['options' => ['min_range' => 1]];
 $tabErreur = [];
-$produit = new Produit();
+$liste = new Liste();
+$todo = new Todo();
 if (filter_input(INPUT_POST, 'submit')) {
-    $produit->id_produit = filter_input(INPUT_POST, 'id_produit', FILTER_VALIDATE_INT, $opt);
-    $produit->id_categorie = filter_input(INPUT_POST, 'id_categorie', FILTER_VALIDATE_INT, $opt);
-    $produit->nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-    $produit->ref = filter_input(INPUT_POST, 'ref', FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-    $produit->prix = filter_input(INPUT_POST, 'prix', FILTER_VALIDATE_FLOAT);
-    if (!$produit->id_categorie || !$produit->categorie)
-        $tabErreur[] = "La catégorie est absente ou invalide.";
-    if (!$produit->nom || mb_strlen($produit->nom) > 50) // mb_strlen recupère chaine de caractère
+    $liste->id_liste = filter_input(INPUT_POST, 'id_liste', FILTER_VALIDATE_INT, $opt);
+    $liste->titre = filter_input(INPUT_POST, 'titre', FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+
+    if (!$liste->id_usager || !$liste->usager)
+        $tabErreur[] = "Le nom usager est absente ou invalide.";
+    if (!$liste->titre || mb_strlen($liste->titre) > 50) // mb_strlen recupère chaine de caractère
         $tabErreur[] = "Le nom est absent ou invalide.";
-    if (!$produit->ref || mb_strlen($produit->ref) > 10 || $produit->refExiste())
-        $tabErreur[] = "La référence est absente, invalide ou déjà existante.";
-    if (!$produit->prix || $produit->prix < 0 || $produit->prix >= 1000)
-        $tabErreur[] = "Le prix est absent ou invalide.";
-    if (!$tabErreur) {
-        $db->start(); //debut transaction SQL
-        $id_produit = $produit->id_produit ?: 'DEFAULT';
-        $produit->sauver();
-        $upload = new Upload('photo', Cfg::IMG_TAB_MIME);
-        //l'upload est facultatif.
-        if ($upload->codeErreur === UPLOAD_ERR_NO_FILE) { //si je n'envoie pas d'image, on commit
-            $db->commit();
-            header('Location:index.php');
-            exit;
-        }
-        //l'upload a bien eu lieu
-        $tabErreur = $upload->tabErreur; // ecrase tabErreur par upload->tabErreur
-        if (!$tabErreur) { //tabErreur d'upload
-            $imageJPEG = new ImageJPEG($upload->cheminServeur);
-            $imageJPEG->copier(Cfg::IMG_P_LARGEUR, Cfg::IMG_P_HAUTEUR, "img/prod_{$produit->id_produit}_p.jpg");
-            $imageJPEG->copier(Cfg::IMG_V_LARGEUR, Cfg::IMG_V_HAUTEUR, "img/prod_{$produit->id_produit}_v.jpg", AbstractImage::COVER);
-            $tabErreur = $imageJPEG->tabErreur;
-            if (!$tabErreur) {
-                $db->commit();
-                header('Location:index.php');
-                exit;
-            }
-        }
-        $db->rollback();
-    }
 } else {
-    $produit->id_categorie = filter_input(INPUT_GET, 'id_categorie', FILTER_VALIDATE_INT, $opt);
-    if (!$produit->id_categorie) {
-        $produit->id_produit = filter_input(INPUT_GET, 'id_produit', FILTER_VALIDATE_INT, $opt);
-        if (!$produit->id_produit) {
+    $liste->id_liste = filter_input(INPUT_GET, 'id_liste', FILTER_VALIDATE_INT, $opt);
+    $todo->id_todo = filter_input(INPUT_GET, 'todo', FILTER_VALIDATE_INT, $opt);
+
+    if (!$liste->id_liste) {
+        $liste->id_liste = filter_input(INPUT_GET, 'id_liste', FILTER_VALIDATE_INT, $opt);
+        if (!$liste->id_liste) {
             header('Location:indispo.php');
             exit;
         }
-        if (!$produit->charger()) {
+        if (!$liste->charger()) {
             header('Location:indispo.php');
             exit;
         }
     }
 }
-$tabCategorie = Categorie::tab(1, "nom");
-$id = file_exists("img/prod_{$produit->id_produit}_p.jpg") ? $produit->id_produit : 0;
-$maj = !$id ?: (new SplFileInfo("img/prod_{$id}_v.jpg"))->getMTime();
+
+$tabTodo = Todo::tab("id_liste={$liste->id_liste}", "titre");
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -75,52 +46,42 @@ $maj = !$id ?: (new SplFileInfo("img/prod_{$id}_v.jpg"))->getMTime();
     <header></header>
     <div id="container">
         <!-- afficher les éventuelles erreurs. -->
-        <div class="categorie">Editer un produit</div>
+        <div class="categorie">Editer une liste de <?= $liste->usager->nom . " " . $liste->usager->prenom ?></div>
         <div class="erreur"><?= implode('<br/>', $tabErreur) ?></div>
         <form name="form1" action="editer.php" method="post" enctype="multipart/form-data">
             <!--multipart/form-data obligatoire pour envoyer un fichier dans un formulaire-->
-            <input type="hidden" name="id_produit" value="<?= $produit->id_produit ?>" />
+            <input type="hidden" name="id_liste" value="<?= $liste->id_liste ?>" />
             <div class="item">
-                <label>Catégorie</label>
-                <select name="id_categorie">
+                <label>Titre de la liste</label>
+                <input name="titre" value="<?= $liste->titre ?>" maxlength="50" required="required" />
+            </div>
+            <div class="item">
+                <label>titre du todo : </label>
+                <select id="name" name="todo">
                     <?php
-                    foreach ($tabCategorie as $categorie) {
-                        $selected = $categorie->id_categorie == $produit->id_categorie ? 'selected="selected"' : '';
+                    foreach ($tabTodo as $todo) {
+
                         ?>
-                    <option value="<?= $categorie->id_categorie ?>" <?= $selected ?>><?= $categorie->nom ?></option>
+                    <option value="<?= $todo->id_todo ?>">
+                        <?= $todo->titre ?></option>
                     <?php
                 }
                 ?>
                 </select>
             </div>
-            <div class="item">
-                <label>Nom</label>
 
-                <input name="nom" value="<?= $produit->nom ?>" maxlength="50" required="required" />
+            <div class=" item">
+                <label>Détail</label>
+                <textarea name="detail" value="" cols="30" rows="10"></textarea>
             </div>
-            <div class="item">
-                <label>Référence</label>
-                <input name="ref" value="<?= $produit->ref ?>" maxlength="10" required="required" />
-            </div>
-            <div class="item">
-                <label>Prix</label>
-                <input type="number" name="prix" value="<?= $produit->prix ?>" min="0" max="999.99" step="0.01"
-                    required="required" />
-            </div>
-            <div class="item">
-                <label>Photo (JPEG)</label>
-                <input type="file" name="photo" onchange="afficherPhoto(this.files)" />
-                <!-- le tableau files contient des instances de file.-->
-                <input type="button" value="Parcourir..." onclick="this.form.photo.click()" />
 
-            </div>
             <div class="item">
                 <label></label>
                 <input type="button" value="Annuler" onclick="annuler()" />
                 <input type="submit" name="submit" value="Valider" />
             </div>
         </form>
-        <div id="vignette" style="background-image:url('img/prod_<?= $id ?>_v.jpg?maj=<?= $maj ?>')"></div>
+        <div id="vignette" style="background-image:url('img/prod_35_v.jpg')"></div>
 
     </div>
     <footer></footer>
@@ -129,6 +90,12 @@ $maj = !$id ?: (new SplFileInfo("img/prod_{$id}_v.jpg"))->getMTime();
     const TAB_MIME = ['<?= implode("','", Cfg::IMG_TAB_MIME) ?>']; // possible de mettre json_encode(TAB_MIME)
     </script>
     <script src="js/editer.js" type="text/javascript"></script>
+    <script>
+    document.getElementById('name').onchange = function() {
+        window.location = `editer.php?id_liste=<?= $liste->id_liste ?>;todo=${this.value}`;
+    };
+    </script>
+
 </body>
 
 </html>
