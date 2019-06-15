@@ -1,0 +1,45 @@
+$limegreen: #32CD32; //rgb(50,205,50)
+$lawngreen: #7CFC00; //rgb(124,252,0)
+$green: #38a869; //rgb(56,168,105)
+$seagreen: #2E8B57; //rgb(46,139,87)
+$green1: #D7FFF1;
+$green2: #8CD790;
+$green3: #77AF9C;
+$green4: #285943;
+$turquoise: #40E0D0; //(64,224,208)
+$cerise: #e04050; //(224,64,80)
+$dark-grey: #222831;
+$grey: #393e46; //rgb (22, 24, 27)
+$white: #fcfcfc;
+$white-light: #FFF;
+
+ /*-------------*/
+$color-font-light: $white;
+$color-font-dark: $dark-grey;
+$color-font-color: $cerise;
+$theme-background-color-light: $white-light;
+$theme-background-color: $white;
+$header-theme-bg-color: $grey;
+$nav-theme-color: $turquoise;
+$pill-organiser:$cerise;
+
+
+/*-------------FONT----------------*/
+$font-family-title: 'Aleo', serif;
+$font-family-content: "Roboto", Arial, sans-serif;
+$font-weight-title: 700;
+$font-weight-content: 300;
+$font-size-title: 50px;
+$font-size-sutitle: 45px;
+$font-size-l: 40px;
+$font-size-m: 34px;
+$font-size-s: 18px;
+$font-size-xs: 12px;
+
+/*--------------Align-------------*/
+$text-center: center;
+$text-right: right;
+$text-left: left;
+/*--------------BORDER-------------*/
+$border-s: 1px solid $cerise;
+$border-m: 2px solid $cerise;

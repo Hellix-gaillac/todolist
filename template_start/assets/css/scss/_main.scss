@@ -1,0 +1,200 @@
+
+    <main>
+      <section id='presentation'>
+        <h3>Présentation</h3>
+        <img src='' alt=''></img>
+        <p>
+          Coactique aliquotiens nostri pedites ad eos persequendos scandere clivos sublimes etiam si lapsantibus plantis fruticeta prensando vel dumos ad vertices venerint summos, inter arta tamen et invia nullas acies explicare permissi nec firmare nisu valido gressus: hoste discursatore rupium abscisa volvente, ruinis ponderum inmanium consternuntur, aut ex necessitate ultima fortiter dimicante, superati periculose per prona discedunt.
+
+          Et interdum acciderat, ut siquid in penetrali secreto nullo citerioris vitae ministro praesente paterfamilias uxori susurrasset in aurem, velut Amphiarao referente aut Marcio, quondam vatibus inclitis, postridie disceret imperator. ideoque etiam parietes arcanorum soli conscii timebantur.
+        </p>
+      </section>
+
+      <section id='competences'>
+        <h3>Compétences</h3>
+          <div class='box'>
+            <h4>HTML.5/>CSS.3</h4>
+
+          </div>
+          <div class='box'>
+            <h4>Javascript</h4>
+
+          </div>
+          <div class='box'>
+            <h4>Php</h4>
+
+          </div>
+          <div class='box'>
+            <h4>Java SE</h4>
+
+          </div>
+          <div class='box'>
+            <h4>Stage</h4>
+
+          </div>
+          <div class='box'>
+            <h4>Transverce</h4>
+
+          </div>
+      </section>
+
+      <section id='realisations'>
+        <h3>Réalistations</h3>
+
+        <article class='site'>
+          <h4>Site Personnel</h4>
+          <img src='' alt=''></img>
+
+          <p>Site web débuté en stage post-formation.Il est en production et en amélioration continue.
+          </p>
+
+          <ul>
+            <li>- HTML5/CSS3.</li>
+            <li>- Responsive Design.</li>
+            <li>- Traitement formulaire en php.</li>
+            <li>- Hebergement.</li>
+            <li>- .htaccess pour redirection Https et réécriture d'URL.</li>
+            <li>- SEO - indexation et recherche d'amélioration du référencement.</li>
+            <li>- Mise en place des outils Google Marketing Platform.</li>
+          </ul>
+
+        </article>
+
+        <article class='site'>
+          <h4>CV-site perso pendant la formation.</h4>
+          <img src='' alt=''></img>
+
+          <p>Site web débuté pendant la formation. Il est en production et en amélioration continue.
+          </p>
+
+          <ul>
+            <li>- HTML5/CSS3 - Sass.</li>
+            <li>- Responsive Design.</li>
+            <li>- Utilisation de JS avec jQuery.</li>
+            <li>- Traitement formulaire en php.</li>
+            <li>- Hebergement.</li>
+            <li>- SEO - indexation et recherche d'amélioration du référencement.</li>
+            <li>- Mise en place des outils Google Marketing Platform.</li>
+          </ul>
+
+        </article>
+
+        <article class='site'>
+          <h4>Travaux en formation</h4>
+          <img src='' alt=''></img>
+          <img src='' alt=''></img>
+          <img src='' alt=''></img>
+
+          <ul>
+            <li>- HTML5/CSS3 - Sass.</li>
+            <li>- Positionnement Float / Position / Flexbox / Grid Layout </li>
+            <li>- Responsive Design.</li>
+            <li>- Utilisation de bibliothèques (jQuery) et frameworks (Bootstrap).</li>
+            <li>- T</li>
+            <li>- H</li>
+            <li>- S</li>
+            <li>- M</li>
+          </ul>
+
+
+        </article>
+      </section>
+
+      <section id='experiences'>
+        <h3>Expériences</h3>
+
+        <div id='temoin'>
+
+          <h4>Recommandations</h4>
+          <article class='sticker'>
+            <img src='' alt''></img>
+            <p>chez</p>
+            <p><a href=''>site</a></p>
+            <p>message</p>
+            <p class='sign'></p>
+          </article>
+
+          <article class='sticker'>
+            <img src='' alt''></img>
+            <p>chez</p>
+            <p><a href=''>site</a></p>
+            <p>message</p>
+            <p class='sign'></p>
+          </article>
+
+          <article class='sticker'>
+            <img src='' alt''></img>
+            <p>chez</p>
+            <p><a href=''>site</a></p>
+            <p>message</p>
+            <p class='sign'></p>
+          </article>
+
+          <article class='sticker'>
+            <img src='' alt''></img>
+            <p>chez</p>
+            <p><a href=''>site</a></p>
+            <p>message</p>
+            <p class='sign'></p>
+          </article>
+
+          <article class='sticker'>
+            <img src='' alt''></img>
+            <p>chez</p>
+            <p><a href=''>site</a></p>
+            <p>message</p>
+            <p class='sign'></p>
+          </article>
+
+        </div>
+      </section>
+
+      <section id='interets'>
+        <h3>Intérêts</h3>
+
+        <article class='inter'>
+          <h5></h5>
+          <img src='' alt='logo tech'></img>
+        </article>
+
+        <article class='inter'>
+          <h5></h5>
+          <img src='' alt='logo Nature'></img>
+        </article>
+
+        <article class='inter'>
+          <h5></h5>
+          <img src='' alt='logo Cuisine'></img>
+        </article>
+
+        <article class='inter'>
+          <h5></h5>
+          <img src='' alt='logo Famille'></img>
+        </article>
+
+
+      </section>
+
+      <section id='contact'>
+        <h3>Contact</h3>
+        <form action="" method="POST">
+
+          <label for='name'>Votre Prénom et NOM : </label>
+          <select for="genre" name="genre"required>
+            <option selected>...</option>
+            <option value="madame">Madame</option>
+            <option value="monsieur">Monsieur</option>
+          </select>
+          <input type="text" name="name" placeholder="..."/>
+
+          <label for='email'>Votre adresse mail : </label>
+          <input type="email" name="email" placeholder=" ..."/>
+
+          <label for='text'>Votre message : </label>
+          <textarea type="text" name="text" placeholder=" ..."></textarea>
+          <button value="Submit" >Envoyer <i class="fas fa-paper-plane"></i></button>
+        </form>
+
+      </section>
+
+    </main>

@@ -1,0 +1,12 @@
+{
+  "compileOnSave" : true,
+  "compilerOptions":{
+    "target":"es5",
+    "pretty":true,
+    "outDir":"./build"
+  },
+  "files":[
+    "exercice.ts",
+    "class_eleve.ts"
+  ]
+}
