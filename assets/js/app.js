@@ -11,7 +11,7 @@ let message = {
     </div>`,
     methods:{
         close(){
-            this.$parent.$data.alert=false
+            this.$emit('close')
 
         }
     }
@@ -52,7 +52,7 @@ let vm = new Vue({
         showAlert () {
             this.alert=true
         },
-        close () {
+        hideAlert () {
             this.alert=false
         }
     }
