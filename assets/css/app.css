@@ -1,0 +1,17 @@
+footer, header {
+  background-color: #279f87;
+  color: #fafffa;
+  text-align: center;
+}
+
+.view {
+  border: 1px solid #279f87;
+  width: 800px;
+  margin: 20px auto;
+  min-height: 200px;
+}
+
+.success {
+  color: green;
+}
+/*# sourceMappingURL=app.css.map */
