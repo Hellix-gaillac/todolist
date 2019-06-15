@@ -5,7 +5,8 @@
 	<meta charset="UTF-8" />
 	<title>CV developpeur web Xavier Loup"</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/app.css" />
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+		integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 </head>
 
@@ -15,10 +16,11 @@
 	</header>
 
 
-	<div class="view"  id="app">
-<message type="success" :message="message"></message>
-<counter></counter>
-<counter></counter>
+	<div class="view" id="app">
+		<message type="success" :message="message" header="Attention" v-if="alert"></message>
+		<button @click="showAlert">Alerter</button>
+		<counter></counter>
+		<counter :start="3"></counter>
 
 
 

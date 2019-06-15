@@ -1,6 +1,20 @@
 let message = {
-    props: ['type', 'message'],
-    template: `<div class="message success">{{message}}</div>`
+    props: {
+        type :{type:String,default:'success'},
+        message: String,
+        header:String
+    },
+    template: `<div class="message success">
+    <i class="far fa-times-circle" @click="close"></i>
+    <div class="header">{{header}}</div>
+    {{message}}
+    </div>`,
+    methods:{
+        close(){
+            this.$parent.$data.alert=false
+
+        }
+    }
 }
 
 let counter = {
@@ -9,16 +23,20 @@ let counter = {
             count: 0
         }
     },
+    props:{
+        start: {type : Number, default:0}
+    },
     methods: {
         increment: function () {
             this.count++
         }
     },
     template: `<div>
-    <span>{{count}}</span>
-    <button @click="increment()">Incrément</button>
-    
-    </div> `
+    <button @click="increment()">{{count}}</button>
+    </div> `,
+    mounted: function(){
+        this.count = this.start
+    }
 }
 let vm = new Vue({
     el: '#app',
@@ -28,12 +46,14 @@ let vm = new Vue({
     },
     data: {
         message: 'Salut',
-
+        alert:false
     },
     methods: {
-        demo: function () {
-            console.log('salut');
-
+        showAlert () {
+            this.alert=true
+        },
+        close () {
+            this.alert=false
         }
     }
 
