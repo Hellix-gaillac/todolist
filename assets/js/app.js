@@ -1,28 +1,41 @@
-Vue.filter('capitalize', function(value){
-    return value.toUpperCase()
-})
+let message = {
+    props: ['type', 'message'],
+    template: `<div class="message success">{{message}}</div>`
+}
 
-Vue.directive('salut',{
-    bind: function (el,binding,vnode){
-        console.log(el,binding) 
-    }
-})
-
-
+let counter = {
+    data: function () {
+        return {
+            count: 0
+        }
+    },
+    methods: {
+        increment: function () {
+            this.count++
+        }
+    },
+    template: `<div>
+    <span>{{count}}</span>
+    <button @click="increment()">Incrément</button>
+    
+    </div> `
+}
 let vm = new Vue({
     el: '#app',
+    components: {
+        message,
+        counter
+    },
     data: {
-        message: 'Jean',
-        lastname: 'Petit',
-        fullname:''
+        message: 'Salut',
 
     },
-    methods:{
-        demo:function(){
+    methods: {
+        demo: function () {
             console.log('salut');
-            
+
         }
     }
-    
+
 
 })
