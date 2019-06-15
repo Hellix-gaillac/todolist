@@ -1,14 +1,23 @@
 let vm = new Vue({
     el: '#app',
     data: {
-        message: 'Salut les gens!',
-        link: 'https://www.xavier-loup.fr/',
-        cls: "success",
-        persons: ['Xavier', 'Alice', 'Amandine', 'Daria', 'Camille', 'Marion', 'Robin']
+        firstname: 'Jean',
+        lastname: 'Petit'
+
     },
-    methods: {
-        add: function () {
-            this.persons.push('Flush')
+    computed: {
+        fullname: {
+            get: function () {
+                return this.firstname + ' ' + this.lastname
+            },
+            set: function (value) {
+                let parts = value.split(' ')
+                this.firstname = parts[0]
+                this.lastname = parts[1]
+            }
         }
+
+
     }
+
 })

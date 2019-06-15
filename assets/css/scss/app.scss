@@ -14,4 +14,15 @@ footer,header{
 }
 .success{
     color:green;
+    background-color: #eafdf9
+}
+.error{
+    color:red;
+    background-color: black;
+}
+.message{
+    width:500px;
+    height:50px;
+    background-color: #eafdf9;
+    padding: 5px;
 }
