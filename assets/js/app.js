@@ -1,16 +1,19 @@
 let message = {
     props: {
-        type :{type:String,default:'success'},
+        type: {
+            type: String,
+            default: 'success'
+        },
         message: String,
-        header:String
+        header: String
     },
     template: `<div class="message success">
     <i class="far fa-times-circle" @click="close"></i>
     <div class="header">{{header}}</div>
     {{message}}
     </div>`,
-    methods:{
-        close(){
+    methods: {
+        close() {
             this.$emit('close')
 
         }
@@ -23,8 +26,11 @@ let counter = {
             count: 0
         }
     },
-    props:{
-        start: {type : Number, default:0}
+    props: {
+        start: {
+            type: Number,
+            default: 0
+        }
     },
     methods: {
         increment: function () {
@@ -34,7 +40,7 @@ let counter = {
     template: `<div>
     <button @click="increment()">{{count}}</button>
     </div> `,
-    mounted: function(){
+    mounted: function () {
         this.count = this.start
     }
 }
@@ -45,15 +51,15 @@ let vm = new Vue({
         counter
     },
     data: {
-        message: 'Salut',
-        alert:false
+        message: 'Salut je suis un test',
+        alert: false
     },
     methods: {
-        showAlert () {
-            this.alert=true
+        showAlert() {
+            this.alert = true
         },
-        hideAlert () {
-            this.alert=false
+        hideAlert() {
+            this.alert = false
         }
     }
 
