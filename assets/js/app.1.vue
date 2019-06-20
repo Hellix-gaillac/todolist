@@ -46,39 +46,28 @@ let counter = {
 
 let formUser = {
     props: {
-        value: Object
+        user: Object
     },
     data() {
         return {
-            user: {
-                ...this.value
+            userLocal: {
+                ...this.user
             }
         }
     },
-    methods: {
-        save() {
-            this.$emit('input', this.user)
-        }
-    },
     template: `
-    <form @submit.prevent="save">
-         <p><slot name="header"></slot></p>
-
+    <form>
         <div class="champs">
             <label for="">Prénom : </label><br/>
-            <input type="text" v-model="user.firstname"/>
+            <input type="text" v-model="userLocal.firstname"/>
         </div>
         <div class="champs">
             <label for="">Nom : </label><br/>
-            <input type="text"  v-model="user.lastname"/>
+            <input type="text"  v-model="userLocal.lastname"/>
         </div>
         <button type="submit" >Valider</button>
-        <p><slot name="footer"></slot></p>
     </form>
-    `,
-    mounted() {
-        console.log(this)
-    }
+    `
 
 }
 let vm = new Vue({

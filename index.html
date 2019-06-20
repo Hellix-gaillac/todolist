@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="UTF-8" />
-	<title>CV developpeur web Xavier Loup"</title>
-	<link rel="stylesheet" type="text/css" href="assets/css/app.css" />
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-		integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>CV developpeur web Xavier Loup"</title>
+        <link href="assets/css/app.css" rel="stylesheet" type="text/css"/>
+        <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" rel="stylesheet">
 
-</head>
+    </head>
 
-<body>
-	<header>
-		<h1>TodoList-VueJS</h1>
-	</header>
+    <body>
+        <header>
+            <h1>TodoList-VueJS</h1>
+        </header>
 
+        <div class="view" id="app">
+            <form-user v-model="user">
+			Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum non blanditiis, voluptas quo temporibus deleniti! Nulla voluptas quod repudiandae quas, rerum suscipit voluptatibus consequatur excepturi fugit expedita velit eaque dolor.</form-user>
+            <p>
+                {{user}}
+            </p>
+            <p>test form</p>
+            <message :message="message" @close="hideAlert" header="Attention , je suis apparue" type="success" v-if="alert"></message>
+            <button @click="showAlert" v-if="!alert">Alerter</button>
+            <counter></counter>
+            <counter :start="3"></counter>
+        </div>
 
-	<div class="view" id="app">
-		<message type="success" :message="message" header="Attention" v-if="alert" @close="hideAlert"></message>
-		<button @click="showAlert" v-if="!alert">Alerter</button>
-		<counter></counter>
-		<counter :start="3"></counter>
-
-
-
-	</div>
-
-	<footer>
-		<p>create by &#9400;Hellix 2019</p>
-	</footer>
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="assets/js/app.js"></script>
-</body>
+        <footer>
+            <p>create by &#9400;Hellix 2019</p>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="assets/js/app.js"></script>
+    </body>
 
 </html>

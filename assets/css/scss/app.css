@@ -1,0 +1,36 @@
+footer, header {
+  background-color: #279f87;
+  color: #fafffa;
+  text-align: center;
+}
+
+.view {
+  border: 1px solid #279f87;
+  width: 800px;
+  margin: 20px auto;
+  min-height: 200px;
+}
+
+.success {
+  color: green;
+  background-color: #eafdf9;
+}
+
+.error {
+  color: red;
+  background-color: black;
+}
+
+.message {
+  width: 500px;
+  height: 50px;
+  background-color: #eafdf9;
+  padding: 5px;
+}
+
+form {
+  width: 500px;
+  margin: 20px auto;
+  padding: 10px;
+}
+/*# sourceMappingURL=app.css.map */
